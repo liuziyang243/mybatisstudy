@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="dbconfig.properties"/>
+
+    <!--设置别名-->
+    <typeAliases>
+        <typeAlias type="com.learn.chapter2.po.Role" alias="role"/>
+    </typeAliases>
+
+    <typeHandlers>
+        <typeHandler handler="com.learn.chapter2.handler.ListTypeHandler" javaType="List" jdbcType="VARCHAR"/>
+    </typeHandlers>
+
+    <!--定义数据库信息，默认使用development数据库构建环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--采用jdbc事务管理-->
+            <transactionManager type="JDBC">
+                <property name="autoCommit" value="false"/>
+            </transactionManager>
+            <!--配置数据库连接信息-->
+            <dataSource type="com.learn.chapter2.dbpool.DruidDataSourceFactory">
+                <!--<property name="driver" value="${driver}"/>-->
+                <property name="driverClassName" value="${mysql.driver}"/>
+                <!--<property name="url" value="jdbc:mysql://localhost:3306/mybatis_test?serverTimezone=UTC&amp;characterEncoding=utf-8&amp;useSSL=true"/>-->
+                <property name="url" value="${mysql.url}"/>
+                <property name="username" value="${mysql.username}"/>
+                <property name="password" value="${mysql.password}"/>
+                <property name="initialSize" value="${mysql.initialSize}"/>
+                <property name="maxActive" value="${mysql.maxActive}"/>
+                <property name="minIdle" value="${mysql.minIdle}"/>
+                <property name="validationQuery" value="${mysql.validationQuery}"/>
+                <property name="maxWait" value="${mysql.maxWait}"/>
+                <property name="testOnBorrow" value="${mysql.testOnBorrow}"/>
+                <property name="testOnReturn" value="${mysql.testOnReturn}"/>
+                <property name="testWhileIdle" value="${mysql.testWhileIdle}"/>
+                <property name="timeBetweenEvictionRunsMillis" value="${mysql.timeBetweenEvictionRunsMillis}"/>
+                <property name="minEvictableIdleTimeMillis" value="${mysql.minEvictableIdleTimeMillis}"/>
+                <property name="removeAbandoned" value="${mysql.removeAbandoned}"/>
+                <property name="removeAbandonedTimeout" value="${mysql.removeAbandonedTimeout}"/>
+                <property name="logAbandoned" value="${mysql.logAbandoned}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <package name="com.learn.chapter2.mapper"/>
+    </mappers>
+</configuration>

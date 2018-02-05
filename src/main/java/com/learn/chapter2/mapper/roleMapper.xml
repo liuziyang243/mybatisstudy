@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.chapter2.mapper.RoleMapper">
+    <resultMap id="roleMap" type="role">
+        <result column="rights" property="rights" javaType="List" jdbcType="VARCHAR"/>
+        <result column="kind" property="kind" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+    </resultMap>
+
+    <select id="getRole" parameterType="long" resultType="Role" resultMap="roleMap">
+        SELECT *
+        FROM Role
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertRole" parameterType="role" timeout="10">
+        INSERT INTO Role (roleName, note, rights, kind) VALUES (#{roleName}, #{note}, #{rights}, #{kind})
+    </insert>
+
+    <delete id="delRole" parameterType="long">
+        DELETE FROM Role
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectRoles" resultMap="roleMape">
+        SELECT *
+        FROM role
+        WHERE roleName LIKE concat('%', #{roleName}, '%') AND note LIKE concat('%', #{note}, '%')
+    </select>
+</mapper>
