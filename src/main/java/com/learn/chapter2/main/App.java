@@ -34,7 +34,7 @@ public class App {
             role.setRights(temp);
             role.setKind(RoleKind.ADMIN);
             roleMapper.insertRole(role);
-            Role role1 = roleMapper.getRole(44L);
+            Role role1 = roleMapper.getRole(3L);
             logger.info(role1.getRights().toString());
             logger.info(role1.getKind().toString());
             sqlSession.commit();

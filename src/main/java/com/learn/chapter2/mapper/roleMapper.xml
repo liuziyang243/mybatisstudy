@@ -23,7 +23,7 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectRoles" resultMap="roleMape">
+    <select id="selectRoles" resultMap="roleMap">
         SELECT *
         FROM role
         WHERE roleName LIKE concat('%', #{roleName}, '%') AND note LIKE concat('%', #{note}, '%')
