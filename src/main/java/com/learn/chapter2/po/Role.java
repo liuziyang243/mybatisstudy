@@ -3,6 +3,7 @@ package com.learn.chapter2.po;
 import com.learn.chapter2.main.RoleKind;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * @version v1.00
  */
 @Data
-public class Role {
+public class Role implements Serializable{
     private Long id;
     private String roleName;
     private String note;

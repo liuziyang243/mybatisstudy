@@ -38,6 +38,11 @@ public class App {
             logger.info(role1.getRights().toString());
             logger.info(role1.getKind().toString());
             sqlSession.commit();
+            RoleMapper roleMapper1 = sqlSession.getMapper(RoleMapper.class);
+            Role role2 = roleMapper1.getRole(3L);
+            logger.info(role2.getRights().toString());
+            logger.info(role2.getKind().toString());
+            sqlSession.commit();
         } catch (Exception e) {
             logger.error("[app]", e);
             if (null != sqlSession) {
