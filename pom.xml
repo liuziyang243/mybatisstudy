@@ -38,6 +38,12 @@
             <version>3.4.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>2.1.9</version>
+        </dependency>
+
         <!-- driver for mysql -->
         <dependency>
             <groupId>mysql</groupId>
@@ -85,6 +91,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.1.6</version>
+        </dependency>
+
+        <!--cglib-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.6</version>
         </dependency>
     </dependencies>
 
