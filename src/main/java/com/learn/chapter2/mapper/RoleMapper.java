@@ -19,4 +19,8 @@ public interface RoleMapper {
     int delRole(long id);
 
     List<Role> getRoleList(@Param("roleName") String roleName, @Param("note") String note);
+
+    int updateRole(@Param("id") long id, @Param("roleName") String roleName, @Param("note") String note);
+
+    String selectNote(@Param("col") String col, @Param("id") long id);
 }

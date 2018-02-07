@@ -31,12 +31,20 @@ public class App {
             temp.add("add");
             temp.add("modify");
             temp.add("del");
+            temp.add("select");
             role.setRights(temp);
             role.setKind(RoleKind.ADMIN);
             roleMapper.insertRole(role);
-            Role role1 = roleMapper.getRole(44L);
-            logger.info(role1.getRights().toString());
-            logger.info(role1.getKind().toString());
+            long id = role.getId();
+            logger.info(role.getId().toString());
+            logger.info(role.getNote());
+            roleMapper.updateRole(id, "revision", "revision note");
+            Role role1 = roleMapper.getRole(id);
+            logger.info(role1.getRoleName());
+            logger.info(roleMapper.selectNote("note", id));
+//            Role role1 = roleMapper.getRole(44L);
+//            logger.info(role1.getRights().toString());
+//            logger.info(role1.getKind().toString());
             sqlSession.commit();
         } catch (Exception e) {
             logger.error("[app]", e);

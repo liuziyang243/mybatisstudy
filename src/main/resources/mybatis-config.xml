@@ -10,6 +10,7 @@
         <typeAlias type="com.learn.chapter2.po.Role" alias="role"/>
     </typeAliases>
 
+    <!--自定义Handler-->
     <typeHandlers>
         <typeHandler handler="com.learn.chapter2.handler.ListTypeHandler" javaType="List" jdbcType="VARCHAR"/>
     </typeHandlers>

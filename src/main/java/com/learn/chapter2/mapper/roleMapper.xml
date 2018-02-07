@@ -8,24 +8,44 @@
         <result column="kind" property="kind" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
     </resultMap>
 
+    <sql id="role_columns">
+        roleName, note, rights, kind
+    </sql>
+
+    <sql id="tableName">
+        Role
+    </sql>
+
     <select id="getRole" parameterType="long" resultType="Role" resultMap="roleMap">
         SELECT *
         FROM Role
         WHERE id = #{id}
     </select>
 
-    <insert id="insertRole" parameterType="role" timeout="10">
+    <insert id="insertRole" parameterType="role" useGeneratedKeys="true" keyProperty="id" timeout="10">
         INSERT INTO Role (roleName, note, rights, kind) VALUES (#{roleName}, #{note}, #{rights}, #{kind})
     </insert>
 
     <delete id="delRole" parameterType="long">
-        DELETE FROM Role
+        DELETE FROM role
         WHERE id = #{id}
     </delete>
 
-    <select id="selectRoles" resultMap="roleMape">
+    <select id="selectRoles" resultMap="roleMap">
         SELECT *
         FROM role
         WHERE roleName LIKE concat('%', #{roleName}, '%') AND note LIKE concat('%', #{note}, '%')
     </select>
+
+    <select id="selectNote" resultType="String">
+        SELECT ${col}
+        FROM role
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateRole">
+        UPDATE role
+        SET roleName = #{roleName}, note = #{note}
+        WHERE id = #{id}
+    </update>
 </mapper>
