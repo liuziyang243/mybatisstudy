@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.chapter8.dao.UserDAO">
+    <resultMap id="userMap" type="user">
+        <result column="user_name" property="userName"/>
+        <!--<result column="id" property="id"/>-->
+        <!--<result column="email" property="emaill"/>-->
+        <!--<result column="sex" property="sex"/>-->
+        <!--<result column="cnname" property="cnname"/>-->
+        <!--<result column="note" property="note"/>-->
+        <!--<result column="mobile" property="mobile"/>-->
+    </resultMap>
+
+    <!--<cache eviction="LRU" flushInterval="100000" size="1024" readOnly="true"/>-->
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <!--<cache type="org.mybatis.caches.ehcache.EhcacheCache">-->
+    <!--<property name="timeToIdleSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+    <!--<property name="timeToLiveSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+    <!--<property name="maxEntriesLocalHeap" value="1000"/>-->
+    <!--<property name="maxEntriesLocalDisk" value="10000000"/>-->
+    <!--<property name="memoryStoreEvictionPolicy" value="LRU"/>-->
+    <!--</cache>-->
+
+    <select id="getUser" parameterType="long" resultType="user">
+        SELECT *
+        FROM t_user
+        WHERE id = #{id}
+    </select>
+
+    <select id="findUser" parameterType="string" resultType="user">
+        SELECT *
+        FROM t_user
+        WHERE user_name LIKE concat('%', #{userName}, '%')
+    </select>
+
+    <update id="updateUser">
+        UPDATE t_user
+        SET user_name = #{userName}, note = #{note}, cnname = #{cnname}, sex = #{sex}, mobile = #{mobile},
+            email     = #{email}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insertUser" parameterType="user" timeout="10">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO t_user (user_name, cnname, sex, mobile, email, note)
+        VALUES (#{userName}, #{cnname}, #{sex}, #{mobile}, #{email}, #{note})
+    </insert>
+
+    <delete id="deleteUser" parameterType="long">
+        DELETE FROM t_user
+        WHERE id = #{id}
+    </delete>
+</mapper>
