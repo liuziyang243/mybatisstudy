@@ -22,7 +22,7 @@ public class StatisticAOP {
     private long startTime = 0;
 
     /**
-     * 对com.mysite.test包下面所有子包所有public方法有效，此方法不能有返回值
+     * 对所有子包所有public方法有效
      */
     @Pointcut("execution(public * com.learn.chapter8..*.*(..))")
     public void recordTime() {

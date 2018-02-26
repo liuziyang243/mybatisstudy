@@ -26,6 +26,7 @@
 
     <!--bean配置-->
     <beans>
+        <!--数据源，配置我们所需的数据库-->
         <!-- 数据源 org.apache.commons.dbcp.BasicDataSource com.alibaba.druid.pool.DruidDataSource -->
         <bean id="mysqlDataSource" class="com.alibaba.druid.pool.DruidDataSource">
 
@@ -74,11 +75,13 @@
         <!-- 使用声明式事务 -->
         <tx:annotation-driven transaction-manager="mysqlTransactionManager"/>
 
+        <!--MyBatis的SqlSessionFactory-->
         <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
             <property name="dataSource" ref="mysqlDataSource"/>
             <property name="configLocation" value="classpath:sqlMapConfig.xml"/>
         </bean>
 
+        <!--sqlSessionTemplate-->
         <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
             <constructor-arg index="0" ref="sqlSessionFactory"/>
         </bean>
@@ -87,7 +90,7 @@
         <!--<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>-->
         <!--</bean>-->
 
-        <!--<bean id="userDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<bean id="userDAO" class="org.mybatis.spring.dao.MapperFactoryBean">-->
         <!--<property name="mapperInterface" value="com.learn.chapter8.dao.UserDAO"/>-->
         <!--<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>-->
         <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->

@@ -31,14 +31,14 @@ public class App {
             user.setSex((short) 0);
             user.setUserName("testUser");
             user.setNote("note for tester");
-            logger.info("[Insert Num]: " + dao.insertUser(user));
-
+            dao.insertUser(user);
+            logger.info("[Insert Num]: " + user.getId());
             List<User> users = dao.findUser("t");
             for (User u : users) {
                 logger.info(u.getEmail());
             }
 
-//        dao.deleteUser(13L);
+            dao.deleteUser(user.getId());
 
             UserService userService = ctx.getBean(UserService.class);
             List<User> userList = userService.getUserList("te");

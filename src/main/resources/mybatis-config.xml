@@ -48,5 +48,6 @@
     </environments>
     <mappers>
         <package name="com.learn.chapter2.mapper"/>
+        <package name="com.learn.chapter9.dao"/>
     </mappers>
 </configuration>

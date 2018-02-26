@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.chapter9.dao.FileMapper">
+    <insert id="insertFile" keyProperty="id" useGeneratedKeys="true" parameterType="com.learn.chapter9.pojo.TFile">
+        INSERT INTO t_file (file) VALUES (#{file})
+    </insert>
+
+    <select id="getFile" parameterType="long" resultType="com.learn.chapter9.pojo.TFile">
+        SELECT
+            id,
+            file
+        FROM t_file
+    </select>
+</mapper>
