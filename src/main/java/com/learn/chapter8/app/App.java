@@ -21,25 +21,32 @@ public class App {
 
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("springConfig.xml");
-        UserDAO dao = ctx.getBean(UserDAO.class);
-        User user = new User();
-        user.setCnname("test");
-        user.setEmail("test@123");
-        user.setMobile("123455");
-        user.setSex((short) 0);
-        user.setUserName("testUser");
-        user.setNote("note for tester");
-        logger.info("" + dao.insertUser(user));
+        for (int i = 0; i < 5; i++) {
+            logger.info("-------- " + i + " ---------");
+            UserDAO dao = ctx.getBean(UserDAO.class);
+            User user = new User();
+            user.setCnname("test");
+            user.setEmail("test@123");
+            user.setMobile("123455");
+            user.setSex((short) 0);
+            user.setUserName("testUser");
+            user.setNote("note for tester");
+            logger.info("[Insert Num]: " + dao.insertUser(user));
 
-        List<User> users = dao.findUser("t");
-        for (User u : users) {
-            logger.info(u.getEmail());
+            List<User> users = dao.findUser("t");
+            for (User u : users) {
+                logger.info(u.getEmail());
+            }
+
+//        dao.deleteUser(13L);
+
+            UserService userService = ctx.getBean(UserService.class);
+            List<User> userList = userService.getUserList("te");
+            logger.info("" + userList.size());
+
+            UserDAO dao1 = ctx.getBean(UserDAO.class);
+            User user1 = dao1.getUser(1L);
+            logger.info("[dao1]:" + user.getUserName());
         }
-
-        dao.deleteUser(13L);
-
-        UserService userService = ctx.getBean(UserService.class);
-        List<User> userList = userService.getUserList("te");
-        logger.info("" + userList.size());
     }
 }
