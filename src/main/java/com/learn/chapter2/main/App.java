@@ -36,8 +36,8 @@ public class App {
             role.setKind(RoleKind.ADMIN);
             roleMapper.insertRole(role);
             long id = role.getId();
-            logger.info(role.getId().toString());
-            logger.info(role.getNote());
+            logger.info("[role id] "+role.getId().toString());
+            logger.info("[role note] "+role.getNote());
             roleMapper.updateRole(id, "revision", "revision note");
             Role role1 = roleMapper.getRole(id);
             logger.info(role1.getRoleName());
