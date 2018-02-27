@@ -11,7 +11,7 @@ import com.learn.chapter9.service.FileService;
  */
 public class App {
     public static void main(String[] args) {
-        String path = "J:\\test.txt";
+        String path = "/home/lzy/logs/mybatistest/App.log.2018-02-26.log";
         try {
             FileService.insert(path);
             FileService.getFile();
