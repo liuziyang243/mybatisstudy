@@ -8,6 +8,7 @@
     <!--设置别名-->
     <typeAliases>
         <typeAlias type="com.learn.chapter2.po.Role" alias="role"/>
+        <typeAlias type="com.learn.chapter8.po.User" alias="user"/>
     </typeAliases>
 
     <!--自定义Handler-->
